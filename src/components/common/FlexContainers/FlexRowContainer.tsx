@@ -6,6 +6,8 @@ type RowContainerProps = {
   align: string,
   gap: string,
   padding: string,
+  width: string,
+  minWidth: string
 }
 
 const RowContainer = styled.div<RowContainerProps>`
@@ -15,18 +17,22 @@ const RowContainer = styled.div<RowContainerProps>`
     padding: 0px;
     gap: ${({ gap }) => gap};
     padding: ${({ padding }) => padding};
+    width: ${({ width }) => width};
+    min-width: ${({ minWidth}) => minWidth };
 `
 
 interface Props {
   children: React.ReactNode,
-  justifyContent?: 'start' | 'space-between' | 'end' | 'space-around' | 'space-evenly',
+  justifyContent?: 'start' | 'space-between' | 'end' | 'space-around' | 'space-evenly' | 'center',
   align?: 'flex-start' | 'center' | 'flex-end' | 'baseline' | 'stretch';
-  gap?: string;
-  padding?: string;
+  gap?: string,
+  padding?: string,
+  width?: string,
+  minWidth?: string,
 }
 
 const FlexRowContainer: React.FC<Props> = ({
-  children, justifyContent = 'start', align = 'flex-end', gap = '0px', padding = '0px'
+  children, justifyContent = 'start', align = 'flex-end', gap = '0px', padding = '0px', width = '100%', minWidth = '0'
 }) => {
   return (
     <RowContainer
@@ -34,6 +40,8 @@ const FlexRowContainer: React.FC<Props> = ({
       align={align}
       gap={gap}
       padding={padding}
+      width={width}
+      minWidth={minWidth}
     >
       {children}
     </RowContainer>
