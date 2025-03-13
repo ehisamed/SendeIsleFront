@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import AuthForm from '../../../../../components/common/AuthForm/AuthForm'
 import TextField from '../../../../../components/common/TextField/TextField'
+import FlexRowContainer from '../../../../../components/common/FlexContainers/FlexRowContainer'
 
 
 interface CandidateRegisterFormData {
@@ -35,15 +36,17 @@ const CandidateRegisterForm = () => {
   }
 
   return (
-    <AuthForm formTitle='Qeydiyyat лус'>
-      <TextField
-        hasError={false} 
-        hasLabel={false} 
-        onChange={handleFormChange}
-        type={'text'}
-        name={'firstName'}
-        placeholder={''}
-      />
+    <AuthForm formTitle='Qeydiyyat'>
+      <FlexRowContainer>
+        <TextField
+          hasError={false} 
+          hasLabel={false} 
+          onChange={handleFormChange}
+          type={'text'}
+          name={'firstName'}
+          placeholder={'Eldar'}
+        />
+      </FlexRowContainer>
     </AuthForm>
   )
 }

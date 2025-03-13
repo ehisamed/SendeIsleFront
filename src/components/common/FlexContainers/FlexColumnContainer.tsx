@@ -17,7 +17,7 @@ const ColumnContainer = styled.div<ColumnContainerProps>`
   width: ${({ width }) => width};
   overflow: hidden;
 `
-interface Props {
+export interface FlexColumnProps {
   children: React.ReactNode;
   align?: 'flex-start' | 'center' | 'flex-end';
   padding?: string;
@@ -25,8 +25,8 @@ interface Props {
   width?: 'fit-content' | string;
 }
 
-const FlexColumnContainer: React.FC<Props> = ({
-  children, align = 'center', padding = '0px', gap = '0px', width = 'fit-content'
+const FlexColumnContainer: React.FC<FlexColumnProps> = ({
+  children, align = 'flex-start', padding = '0px', gap = '0px', width = 'fit-content'
 }) => {
   return (
     <ColumnContainer

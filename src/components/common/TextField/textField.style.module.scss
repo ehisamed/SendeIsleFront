@@ -1,11 +1,19 @@
 @import '../../../styles/main.scss';
 
-.text-field{
+.text-field-wrapper{
     width: 100%;
+    display: flex;
     border: 1px solid $gray-light;
     outline: none;
     padding: 10px;
     border-radius: 10px;
+    align-items: center;
+    gap: 12px;
+}
+
+.text-field{
+    border: none;
+    outline: none;
     font-size: $font-size-15;
 }
 
@@ -22,4 +30,10 @@
     -webkit-box-orient: vertical; 
     line-clamp: 2;
     overflow: hidden;
+}
+
+.text-field-wrapper__suffix-icon,
+.text-field-wrapper__prefix-icon{
+    width: 24px;
+    height: 24px;
 }
