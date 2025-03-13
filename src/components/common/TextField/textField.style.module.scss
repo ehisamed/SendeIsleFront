@@ -1,0 +1,25 @@
+@import '../../../styles/main.scss';
+
+.text-field{
+    width: 100%;
+    border: 1px solid $gray-light;
+    outline: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: $font-size-15;
+}
+
+.text-field-label{
+    font-size: $font-size-18;
+    margin-left: 5px;
+}
+
+.text-field-error{
+    font-size: $font-size-14;
+    color: $red;
+    margin-left: 5px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical; 
+    line-clamp: 2;
+    overflow: hidden;
+}

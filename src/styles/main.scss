@@ -1,0 +1,22 @@
+// Импорт всех стилей:
+
+// пример
+
+@import './variabes'; // Импорт переменных
+// @import 'mixins';    // Импорт миксинов
+// @import '../components/common/Button'; // Импорт стилей для кнопки
+// @import '../components/layout/HeaderLayout'; // Импорт стилей для HeaderLayout
+
+// импортирetv все стили всех компонентов сюда а в компонентах импортиреум тлько main.scss
+// таким образом вы отправляем только один запрос на файл стилей main.scss
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    
+}
