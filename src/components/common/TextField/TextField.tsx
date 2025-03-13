@@ -7,9 +7,9 @@ interface Props {
     error?: string
     hasLabel: boolean
     label?: string 
-    gap: string
+    gap?: string
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-    type: 'text' | 'password'
+    type?: 'text' | 'password'
     name: string
     placeholder: string
 }

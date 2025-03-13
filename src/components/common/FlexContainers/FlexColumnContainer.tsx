@@ -22,14 +22,21 @@ interface Props {
   align?: 'flex-start' | 'center' | 'flex-end';
   padding?: string;
   gap?: string;
-  width: 'fit-content' | string;
+  width?: 'fit-content' | string;
 }
 
 const FlexColumnContainer: React.FC<Props> = ({
-  children, align = 'center', padding = '0px', gap = '0px', width='fit-content'
+  children, align = 'center', padding = '0px', gap = '0px', width = 'fit-content'
 }) => {
   return (
-    <ColumnContainer width={width} gap={gap} padding={padding} align={align}>{children}</ColumnContainer>
+    <ColumnContainer
+      width={width}
+      gap={gap}
+      padding={padding}
+      align={align}
+    >
+      {children}
+    </ColumnContainer>
   )
 }
 
