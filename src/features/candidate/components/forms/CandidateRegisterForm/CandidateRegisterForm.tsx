@@ -35,7 +35,7 @@ const CandidateRegisterForm = () => {
   }
 
   return (
-    <AuthForm formTitle='Qeydiyyat'>
+    <AuthForm formTitle='Qeydiyyat лус'>
       <TextField
         hasError={false} 
         hasLabel={false} 
