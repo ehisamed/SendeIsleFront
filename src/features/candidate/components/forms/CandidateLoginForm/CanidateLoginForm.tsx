@@ -34,26 +34,27 @@ const CanidateLoginForm = () => {
   console.log(formData)
 
   return (
-    <AuthForm formTitle='Daxil ol'>
-      <TextField
-        onChange={handleChange}
-        type='text'
-        name='firstName'
-        hasError={true}
-        // error=''
-        hasLabel={false}
-        placeholder='Eldar'
-        gap='5px' />
-      <TextField
-        onChange={handleChange}
-        type='text'
-        name='lastName'
-        hasError={false}
-        // error=''
-        hasLabel={false}
-        placeholder='Sadiqli'
-        gap='5px' />
-    </AuthForm>
+    <></>
+    // <AuthForm formTitle='Daxil ol' onSubmit={handleSubmit(onSubmit)}>
+    //   <TextField
+    //     onChange={handleChange}
+    //     type='text'
+    //     name='firstName'
+    //     hasError={true}
+    //     // error=''
+    //     hasLabel={false}
+    //     placeholder='Eldar'
+    //     gap='5px' />
+    //   <TextField
+    //     onChange={handleChange}
+    //     type='text'
+    //     name='lastName'
+    //     hasError={false}
+    //     // error=''
+    //     hasLabel={false}
+    //     placeholder='Sadiqli'
+    //     gap='5px' />
+    // </AuthForm>
   )
 }
 

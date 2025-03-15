@@ -5,7 +5,7 @@ import FlexRowContainer from '../../../../components/common/FlexContainers/FlexR
 
 const CandidateRegister = () => {
   return (
-    <FlexRowContainer align='center' gap='45px' justifyContent='center' width='100%'>
+    <FlexRowContainer align='center' gap='45px' width='100%'>
       <img src={images.image} alt="" />
       <CandidateRegisterForm />
     </FlexRowContainer>

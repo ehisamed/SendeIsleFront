@@ -1,46 +1,41 @@
-import React from 'react'
-import style from './authForm.style.module.scss'
-import FlexColumnContainer from '../FlexContainers/FlexColumnContainer';
+import React from 'react';
 import styled from 'styled-components';
+import style from './authForm.style.module.scss';
+import FlexColumnContainer from '../FlexContainers/FlexColumnContainer';
 
 interface AuthFormContainerProps {
-    minWidth: string
-    justifyContent: string
-    gap: string
-    padding: string
-    alignItems: string
+    $gap: string;
+    $padding: string;
 }
 
-const AuthFormContainer = styled.div<AuthFormContainerProps>`
-    min-width: ${({ minWidth }) => minWidth};
+const AuthFormContainer = styled.form<AuthFormContainerProps>`
     display: flex;
     flex-direction: column;
-    justify-content: ${({ justifyContent }) => justifyContent};
-    gap: ${({ gap }) => gap};
-    padding: ${({ padding }) => padding};
-    align-items: ${({ alignItems }) => alignItems};
-`
+    gap: ${({ $gap }) => $gap};
+    padding: ${({ $padding }) => $padding};
+`;
 
 interface AuthFormProps {
-    children: React.ReactNode,
-    formTitle: string,
-    minWidth?: string,
-    justifyContent?: 'start' | 'space-between' | 'end' | 'space-around' | 'space-evenly' | 'center',
-    gap?: string,
-    padding?: string,
+    children: React.ReactNode;
+    formTitle: string;
+    gap?: string;
+    padding?: string;
     alignItems?: 'flex-start' | 'center' | 'flex-end';
+    onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({
-    children, formTitle, minWidth = '0', justifyContent = 'start', gap = '0px', padding = '0px', alignItems = 'flex-start'
+    children,
+    formTitle,
+    gap = '0px',
+    padding = '0px',
+    onSubmit,
 }) => {
     return (
         <AuthFormContainer
-            minWidth={minWidth}
-            justifyContent={justifyContent}
-            gap={gap}
-            padding={padding}
-            alignItems={alignItems}
+            $gap={gap}
+            $padding={padding}
+            onSubmit={onSubmit}
         >
             <h3 className={style['auth-form__form-title']}>{formTitle}</h3>
             <FlexColumnContainer
@@ -52,7 +47,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
                 {children}
             </FlexColumnContainer>
         </AuthFormContainer>
-    )
-}
+    );
+};
 
-export default AuthForm
+export default AuthForm;
