@@ -54,7 +54,7 @@ const MUISelect = <T extends FieldValues>({
                 defaultValue=""
                 onChange={(event) => {
                     setValue(name, event.target.value as any);
-                    clearErrors(name); // Очищаем ошибку при изменении
+                    clearErrors(name);
                 }}
                 displayEmpty
                 renderValue={(selected) => {
