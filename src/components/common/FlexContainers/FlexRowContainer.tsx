@@ -22,6 +22,8 @@ interface Props {
   gap?: string;
   padding?: string;
   width?: string;
+  height?: string;
+  justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
 }
 
 const FlexRowContainer: React.FC<Props> = ({
@@ -30,6 +32,8 @@ const FlexRowContainer: React.FC<Props> = ({
   gap = '0px',
   padding = '0px',
   width = '100%',
+  height,
+  justifyContent = 'flex-start'
 }) => {
   return (
     <RowContainer
@@ -37,6 +41,10 @@ const FlexRowContainer: React.FC<Props> = ({
       $gap={gap}
       $padding={padding}
       $width={width}
+      style={{
+        height: height,
+        justifyContent: justifyContent
+      }}
     >
       {children}
     </RowContainer>
