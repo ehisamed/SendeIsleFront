@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import AuthForm from '../../../../../components/common/AuthForm/AuthForm'
-import TextField from '../../../../../components/common/TextField/TextField'
+import TextField from '../../../../../components/ui/TextField/TextField'
 
 interface CandidateFormData {
   firstName: string,

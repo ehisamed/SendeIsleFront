@@ -61,14 +61,14 @@ const StyledTextField = styled(MuiTextField)(({ theme }) => ({
         color: 'red',
         fontSize: '12px',
         marginLeft: '0px',
-        marginBottom: '5px',
+        marginBottom: '0px',
     },
 
 
 }));
 
 const TextFieldExtraStyle = {
-    mt: '10px',
+    mt: '15px',
     fontSize: '12px',
     '& .MuiInputBase-input': {
         paddingBlock: '8px 6px',

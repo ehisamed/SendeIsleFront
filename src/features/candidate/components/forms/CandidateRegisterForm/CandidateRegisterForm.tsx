@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import AuthForm from '../../../../../components/common/AuthForm/AuthForm';
-import FlexRowContainer from '../../../../../components/common/FlexContainers/FlexRowContainer';
+import FlexRowContainer from '../../../../../components/ui/FlexContainers/FlexRowContainer';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import FlexColumnContainer from '../../../../../components/common/FlexContainers/FlexColumnContainer';
+import FlexColumnContainer from '../../../../../components/ui/FlexContainers/FlexColumnContainer';
 
 import { default as EmailIcon } from '@mui/icons-material/AlternateEmail';
 import { default as PasswordIcon } from '@mui/icons-material/Password';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MUITextField from '../../../../../components/common/MUI/MUITextField';
 import MUITelInput from '../../../../../components/common/MUI/MUITelInput';
 import MUISelect from '../../../../../components/common/MUI/MUISelect';
+import BaseButton from '../../../../../components/ui/Buttons/BaseButton';
 
 interface CandidateRegisterFormFields {
   firstName: string;
@@ -36,7 +38,7 @@ const cities = [
 
 
 const CandidateRegisterForm = () => {
-  const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm<CandidateRegisterFormFields>();
+  const { register, handleSubmit, formState: { errors }, setValue, watch, clearErrors } = useForm<CandidateRegisterFormFields>();
   const [showPassword, setShowPassword] = useState<boolean>(false)
 
   const onSubmit: SubmitHandler<CandidateRegisterFormFields> = (data) => {
@@ -44,7 +46,7 @@ const CandidateRegisterForm = () => {
   };
 
   return (
-    <AuthForm formTitle='Qeydiyyat' onSubmit={handleSubmit(onSubmit)}>
+    <AuthForm formTitle='Qeydiyyat' onSubmit={handleSubmit(onSubmit)} hasBack={true} backTo='/' backInner={<ArrowBackIcon />}>
       <FlexColumnContainer>
         <FlexRowContainer gap='10px'>
           <MUITextField
@@ -109,6 +111,7 @@ const CandidateRegisterForm = () => {
             register={register}
             name="phoneNumber"
             error={errors.phoneNumber}
+            clearErrors={clearErrors}
             helperText={errors.phoneNumber?.message}
             setValue={setValue}
             watch={watch}
@@ -120,6 +123,8 @@ const CandidateRegisterForm = () => {
             register={register}
             name="city"
             error={errors.city}
+            clearErrors={clearErrors}
+            helperText={errors.city?.message}
             cities={cities}
             setValue={setValue}
             validation={{
@@ -129,7 +134,7 @@ const CandidateRegisterForm = () => {
             }}
           />
         </FlexRowContainer>
-        <button type='submit'>Submit</button>
+        <BaseButton padding='12px 12px'>Qeydiyyatdan keç</BaseButton>
       </FlexColumnContainer>
     </AuthForm>
   );

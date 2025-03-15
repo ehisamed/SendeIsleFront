@@ -28,7 +28,7 @@ interface Props {
 
 const FlexRowContainer: React.FC<Props> = ({
   children,
-  align = 'flex-start',
+  align = 'center',
   gap = '0px',
   padding = '0px',
   width = '100%',

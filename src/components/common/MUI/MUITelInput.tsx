@@ -1,8 +1,8 @@
-/* eslint-disable no-mixed-operators */
 import React from 'react';
 import { MuiTelInput } from 'mui-tel-input';
 import { styled } from '@mui/material/styles';
-import { UseFormRegister, FieldError, UseFormSetValue, Path, FieldValues } from 'react-hook-form';
+import { UseFormRegister, FieldError, UseFormSetValue, Path, FieldValues, UseFormClearErrors } from 'react-hook-form';
+import { Padding } from '@mui/icons-material';
 
 interface MUITelInputProps<T extends FieldValues> {
   register: UseFormRegister<T>;
@@ -11,36 +11,47 @@ interface MUITelInputProps<T extends FieldValues> {
   helperText?: string;
   setValue: UseFormSetValue<T>;
   watch: (name: Path<T>) => any;
+  clearErrors: UseFormClearErrors<T>; // Добавлено
   validation?: any;
 }
 
 const StyledTelInput = styled(MuiTelInput)(({ theme }) => ({
-  '& .MuiInputBase-input': {
-    fontSize: '14px',
-    color: 'black',
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: '#E8E8E8',
+    '& .MuiInputBase-input': {
+      fontSize: '14px',
+      color: 'black',
     },
-    '&:hover fieldset': {
-      borderColor: '#3575E2',
+    '& .MuiInputAdornment-root': { // Исправлено: добавлен точный селектор
+      padding: '0px',
+      margin: '0px',
     },
-    '&.Mui-focused fieldset': {
-      borderColor: '#3575E2',
+    '& .MuiIconButton-root': { 
+      padding: '0px',
+      margin: '0px', 
+      marginRight: '5px'
     },
-  },
-  '& .MuiFormHelperText-root': {
-    color: 'red',
-    fontSize: '12px',
-    marginLeft: '0px',
-    marginBottom: '5px',
-    padding: '0px',
-  },
-}));
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#E8E8E8',
+      },
+      '&:hover fieldset': {
+        borderColor: '#3575E2',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#3575E2',
+      },
+    },
+    '& .MuiFormHelperText-root': {
+      color: 'red',
+      fontSize: '12px',
+      marginLeft: '0px',
+      marginBottom: '0px',
+      padding: '0px',
+    },
+  }));
+
 
 const TextFieldExtraStyle = {
-  mt: '10px',
+  mt: '15px',
   fontSize: '12px',
   '& .MuiInputBase-input': {
     paddingBlock: '8px 6px',
@@ -58,6 +69,7 @@ const MUITelInput = <T extends FieldValues>({
   helperText,
   setValue,
   watch,
+  clearErrors,
   validation
 }: MUITelInputProps<T>) => {
   return (
@@ -65,15 +77,15 @@ const MUITelInput = <T extends FieldValues>({
       {...register(name, {
         ...validation,
         validate: {
-            required: (value) => {
-              return value && value !== '+994' || "Номер телефона обязателен";
-            },
-            validPhone: (value) => {
-              const cleanedValue = value.replace(/[^+\d]/g, '');
-              const phoneRegex = /^\+994(50|51|55|70|77|99)\d{7}$/;
-              return phoneRegex.test(cleanedValue) || "Неверный формат номера телефона";
-            }
+          required: (value) => {
+            return value && value !== '+994' || "Номер телефона обязателен";
+          },
+          validPhone: (value) => {
+            const cleanedValue = value.replace(/[^+\d]/g, '');
+            const phoneRegex = /^\+994(50|51|55|70|77|99)\d{7}$/;
+            return phoneRegex.test(cleanedValue) || "Неверный формат номера телефона";
           }
+        }
       })}
       error={!!error}
       helperText={helperText}
@@ -83,6 +95,7 @@ const MUITelInput = <T extends FieldValues>({
       onlyCountries={['AZ']}
       onChange={(value: string) => { 
         setValue(name, value as any); 
+        clearErrors(name); 
       }}
       value={watch(name) || ''}
       sx={TextFieldExtraStyle}

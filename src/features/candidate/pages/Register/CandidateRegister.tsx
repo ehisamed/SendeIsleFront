@@ -1,7 +1,7 @@
 import React from 'react'
 import CandidateRegisterForm from '../../components/forms/CandidateRegisterForm/CandidateRegisterForm'
 import { images } from '../../../../assets/images'
-import FlexRowContainer from '../../../../components/common/FlexContainers/FlexRowContainer'
+import FlexRowContainer from '../../../../components/ui/FlexContainers/FlexRowContainer'
 import style from './register.style.module.scss'
 
 const CandidateRegister = () => {

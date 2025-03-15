@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import style from './authForm.style.module.scss';
-import FlexColumnContainer from '../FlexContainers/FlexColumnContainer';
+import FlexColumnContainer from '../../ui/FlexContainers/FlexColumnContainer';
+import FlexRowContainer from '../../ui/FlexContainers/FlexRowContainer';
+import LinkButton from '../../ui/Buttons/LinkButton';
 
 interface AuthFormContainerProps {
     $gap: string;
@@ -22,6 +24,9 @@ interface AuthFormProps {
     padding?: string;
     alignItems?: 'flex-start' | 'center' | 'flex-end';
     onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+    hasBack?: boolean;
+    backTo?: string | undefined,
+    backInner?: React.ReactNode
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({
@@ -30,6 +35,9 @@ const AuthForm: React.FC<AuthFormProps> = ({
     gap = '0px',
     padding = '0px',
     onSubmit,
+    hasBack,
+    backTo,
+    backInner
 }) => {
     return (
         <AuthFormContainer
@@ -37,7 +45,10 @@ const AuthForm: React.FC<AuthFormProps> = ({
             $padding={padding}
             onSubmit={onSubmit}
         >
-            <h3 className={style['auth-form__form-title']}>{formTitle}</h3>
+            <FlexRowContainer gap='10px'>
+                {hasBack && backTo && (<LinkButton to={backTo}>{backInner}</LinkButton>)}
+                <h3 className={style['auth-form__form-title']}>{formTitle}</h3>
+            </FlexRowContainer>
             <FlexColumnContainer
                 padding='0px'
                 gap='5px'
