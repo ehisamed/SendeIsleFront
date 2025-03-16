@@ -1,0 +1,8 @@
+@use '../../../styles/fontsVariables';
+@use '../../../styles/variables';
+
+.auth-form__form-title{
+    font-family: fontsVariables.$font-roboto;
+    font-weight: fontsVariables.$r-weight-medium;
+    font-size: variables.$font-size-18;
+}

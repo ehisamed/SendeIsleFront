@@ -6,7 +6,7 @@ import style from './register.style.module.scss'
 
 const CandidateRegister = () => {
   return (
-    <FlexRowContainer align='center' gap='45px' width='100%' height='100vh' justifyContent='center'>
+    <FlexRowContainer align='center' gap='45px' width='100%' height='100vh' justifyContent='center' padding='10px'>
       <img src={images.image} className={style['register-img']} alt="" />
       <CandidateRegisterForm />
     </FlexRowContainer>
