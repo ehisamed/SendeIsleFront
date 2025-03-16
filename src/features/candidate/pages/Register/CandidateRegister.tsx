@@ -1,15 +1,13 @@
 import React from 'react'
 import CandidateRegisterForm from '../../components/forms/CandidateRegisterForm/CandidateRegisterForm'
-import { images } from '../../../../assets/images'
-import FlexRowContainer from '../../../../components/ui/FlexContainers/FlexRowContainer'
-import style from './register.style.module.scss'
+import FlexColumnContainer from '../../../../components/ui/FlexContainers/FlexColumnContainer'
 
 const CandidateRegister = () => {
+
   return (
-    <FlexRowContainer align='center' gap='45px' width='100%' height='100vh' justifyContent='center' padding='10px'>
-      <img src={images.image} className={style['register-img']} alt="" />
-      <CandidateRegisterForm />
-    </FlexRowContainer>
+    <FlexColumnContainer align='center' width='100%' height='100vh' gap='45px' justifyContent='center' padding='18px'>
+      <CandidateRegisterForm/>
+    </FlexColumnContainer>
   )
 }
 

@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import AuthForm from '../../../../../components/common/AuthForm/AuthForm';
 import FlexRowContainer from '../../../../../components/ui/FlexContainers/FlexRowContainer';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import FlexColumnContainer from '../../../../../components/ui/FlexContainers/FlexColumnContainer';
-import style from './register.style.module.scss'
+import style from './register.style.module.scss';
 
 import { default as EmailIcon } from '@mui/icons-material/AlternateEmail';
 import { default as PasswordIcon } from '@mui/icons-material/Password';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import CircularProgress from '@mui/material/CircularProgress';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MUITextField from '../../../../../components/common/MUI/MUITextField';
 import MUITelInput from '../../../../../components/common/MUI/MUITelInput';
 import MUISelect from '../../../../../components/common/MUI/MUISelect';
 import BaseButton from '../../../../../components/ui/Buttons/BaseButton';
 import { images } from '../../../../../assets/images';
-import { REQUIRED_MESSAGE, 
-  FIRST_LAST_NAME_PATTERN_MESSAGE, 
+import {
+  REQUIRED_MESSAGE,
+  FIRST_LAST_NAME_PATTERN_MESSAGE,
   FIRST_LAST_NAME_FIRST_LETTER_UPPERCASE_MESSAGE,
   MIN_PASSWORD_MESSAGE,
   MAX_PASSWORD_MESSAGE,
@@ -46,14 +48,53 @@ const cities = [
   'Naftalan',
 ];
 
-
 const CandidateRegisterForm = () => {
-  const { register, handleSubmit, formState: { errors }, setValue, watch, clearErrors } = useForm<CandidateRegisterFormFields>();
-  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const { register, handleSubmit, formState: { errors }, reset, setValue, clearErrors, watch } = useForm<CandidateRegisterFormFields>({
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      phoneNumber: '',
+      city: ''
+    }
+  });
+
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true); // Состояние для загрузки
 
   const onSubmit: SubmitHandler<CandidateRegisterFormFields> = (data) => {
     console.log("Submitted data:", data);
   };
+
+  useEffect(() => {
+
+
+    return () => {
+      reset();
+    };
+  }, [reset]);
+
+  useLayoutEffect(() => {
+    const loadData = async () => {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setLoading(false);
+    };
+
+    loadData();
+  }, [])
+
+  if (loading) {
+    return <div style={{
+      width: '392px',
+      justifyContent: 'center',
+      alignContent: 'center',
+      display: 'flex',
+      flexShrink: '0'
+    }}>
+      <CircularProgress />
+    </div>; // Индикатор загрузки
+  }
 
   return (
     <AuthForm
@@ -63,7 +104,6 @@ const CandidateRegisterForm = () => {
       backTo='/'
       backInner={<ArrowBackIcon />}
       headImg={images.compLogo}
-      flexShrik='0'
     >
       <FlexColumnContainer>
         <FlexRowContainer gap='10px' align='flex-start'>
@@ -82,7 +122,7 @@ const CandidateRegisterForm = () => {
               validate: {
                 firstLetterUppercase: (value: string) => /^[A-ZА-Я]/.test(value) || FIRST_LAST_NAME_FIRST_LETTER_UPPERCASE_MESSAGE
               },
-              minLength: { value: 2, message: FIRST_LAST_NAME_MIN_MESSAGE},
+              minLength: { value: 2, message: FIRST_LAST_NAME_MIN_MESSAGE },
               maxLength: { value: 30, message: FIRST_LAST_NAME_MAX_MESSAGE }
             }}
           />
