@@ -26,7 +26,9 @@ interface AuthFormProps {
     onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     hasBack?: boolean;
     backTo?: string | undefined,
-    backInner?: React.ReactNode
+    backInner?: React.ReactNode,
+    headImg?: string,
+    flexShrik?: string
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({
@@ -37,14 +39,22 @@ const AuthForm: React.FC<AuthFormProps> = ({
     onSubmit,
     hasBack,
     backTo,
-    backInner
+    backInner,
+    headImg,
+    flexShrik,
 }) => {
     return (
         <AuthFormContainer
             $gap={gap}
             $padding={padding}
             onSubmit={onSubmit}
+            style={{
+                flexShrink: flexShrik
+            }}
         >
+            {headImg && (
+                <img src={headImg} alt="" style={{ width: '120px', height: 'auto', marginBottom: '25px'}}/>
+            )}
             <FlexRowContainer gap='10px'>
                 {hasBack && backTo && (<LinkButton to={backTo}>{backInner}</LinkButton>)}
                 <h3 className={style['auth-form__form-title']}>{formTitle}</h3>

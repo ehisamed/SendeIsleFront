@@ -1,5 +1,6 @@
 .register-img{
-    width: 350px;
-    height: 450px;
+    max-width: 650px;
+    min-height: 120px;
+    height: auto;
     display: flex;
 }

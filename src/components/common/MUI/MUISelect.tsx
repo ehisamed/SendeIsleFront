@@ -19,7 +19,7 @@ interface MUISelectProps<T extends FieldValues> {
     error?: FieldError;
     cities: string[];
     setValue: UseFormSetValue<T>;
-    clearErrors: UseFormClearErrors<T>; // Добавлено
+    clearErrors: UseFormClearErrors<T>;
     validation?: any;
     helperText?: string;
 }
@@ -28,7 +28,7 @@ const TextFieldExtraStyle = {
     mt: '15px',
     fontSize: '12px',
     '& .MuiInputBase-input': {
-        paddingBlock: '6px 6px',
+        paddingBlock: '5.3px 6px',
         '&:focus': {
             outline: 'none',
             boxShadow: 'none',
@@ -42,7 +42,7 @@ const MUISelect = <T extends FieldValues>({
     error,
     cities,
     setValue,
-    clearErrors, // Добавлено
+    clearErrors,
     validation,
     helperText
 }: MUISelectProps<T>) => {

@@ -1,0 +1,18 @@
+@use '../../../../../styles/fontsVariables';
+@use '../../../../../styles/variables';
+
+.form-redirect{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: fontsVariables.$font-roboto;
+    font-size: variables.$font-size-15;
+    margin-top: 12px;
+}
+
+.form-redirect-link{
+    color: variables.$primary-color;
+    margin-left: 5px;
+    font-weight: fontsVariables.$r-weight-medium;
+}

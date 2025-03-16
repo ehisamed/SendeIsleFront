@@ -1,8 +1,9 @@
 // components/common/MUITextField.tsx
 import React from 'react';
-import { TextField as MuiTextField, InputAdornment } from '@mui/material';
+import { TextField as MuiTextField, InputAdornment, FormHelperText } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { UseFormRegister, FieldError } from 'react-hook-form';
+import FlexColumnContainer from '../../ui/FlexContainers/FlexColumnContainer';
 
 interface MUITextFieldProps {
     register: UseFormRegister<any>;
@@ -14,6 +15,7 @@ interface MUITextFieldProps {
     startAdornment?: React.ReactNode;
     validation?: any;
     endAdornment?: React.ReactNode;
+    helperTextWidth?: string;
 }
 
 const StyledTextField = styled(MuiTextField)(({ theme }) => ({
@@ -22,27 +24,24 @@ const StyledTextField = styled(MuiTextField)(({ theme }) => ({
         color: 'black',
         backgroundColor: "transparent",
 
-        // Убедитесь, что селектор более специфичен
         '&:-webkit-autofill': {
             backgroundColor: 'transparent !important',
             color: 'black !important',
-            // Добавьте другие стили, если нужно
             boxShadow: '0 0 0px 1000px transparent inset !important',
         },
-        // Стили для -internal-autofill-selected
         '&:-internal-autofill-selected': {
             appearance: 'menulist-button',
             backgroundImage: 'none !important',
-            backgroundColor: '#ffffff !important', // Замените на нужный вам цвет
-            color: 'black !important', 
+            backgroundColor: '#ffffff !important',
+            color: 'black !important',
         },
     },
     '& label': {
         display: 'none',
     },
     "&.Mui-focused": {
-        backgroundColor: "transparent", // Убираем фон при фокусе
-        boxShadow: "none" // Убираем тень
+        backgroundColor: "transparent",
+        boxShadow: "none"
     },
     '& .MuiOutlinedInput-root': {
         '& fieldset': {
@@ -57,14 +56,14 @@ const StyledTextField = styled(MuiTextField)(({ theme }) => ({
             backgroundColor: "transparent",
         },
     },
-    '& .MuiFormHelperText-root': {
-        color: 'red',
-        fontSize: '12px',
-        marginLeft: '0px',
-        marginBottom: '0px',
-    },
-
-
+    // '& .MuiFormHelperText-root': {
+    //     width: '120px',
+    //     color: 'red',
+    //     fontSize: '12px',
+    //     marginLeft: '0px',
+    //     marginBottom: '0px',
+    //     padding: '0px',
+    // },
 }));
 
 const TextFieldExtraStyle = {
@@ -88,31 +87,40 @@ const MUITextField: React.FC<MUITextFieldProps> = ({
     type,
     startAdornment,
     validation,
-    endAdornment
+    endAdornment,
+    helperTextWidth
 }) => {
     return (
-        <StyledTextField
-            {...register(name, validation)}
-            error={!!error}
-            helperText={helperText}
-            variant="outlined"
-            fullWidth
-            placeholder={placeholder}
-            type={type}
-            InputProps={{
-                startAdornment: startAdornment && (
-                    <InputAdornment position='start' >
-                        {startAdornment}
-                    </InputAdornment>
-                ),
-                endAdornment: endAdornment && (
-                    <InputAdornment position='end'>
-                        {endAdornment}
-                    </InputAdornment>
-                )
-            }}
-            sx={TextFieldExtraStyle}
-        />
+        <FlexColumnContainer width='100%'>
+            <StyledTextField
+                {...register(name, validation)}
+                error={!!error}
+                variant="outlined"
+                fullWidth
+                placeholder={placeholder}
+                type={type}
+                InputProps={{
+                    startAdornment: startAdornment && (
+                        <InputAdornment position='start'>
+                            {startAdornment}
+                        </InputAdornment>
+                    ),
+                    endAdornment: endAdornment && (
+                        <InputAdornment position='end'>
+                            {endAdornment}
+                        </InputAdornment>
+                    )
+                }}
+                sx={TextFieldExtraStyle}
+            />
+            {helperText && (
+                <FormHelperText
+                    style={{ width: helperTextWidth ? helperTextWidth : '145px', color: 'red', fontSize: '12px', marginLeft: '0px', marginBottom: '0px' }}
+                >
+                    {helperText}
+                </FormHelperText>
+            )}
+        </FlexColumnContainer>
     );
 };
 
