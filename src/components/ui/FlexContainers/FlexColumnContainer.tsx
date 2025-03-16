@@ -23,11 +23,12 @@ export interface FlexColumnProps {
   padding?: string;
   gap?: string;
   width?: 'fit-content' | string;
+  height?: string;
   justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
 }
 
 const FlexColumnContainer: React.FC<FlexColumnProps> = ({
-  children, align = 'flex-start', padding = '0px', gap = '0px', width = 'fit-content', justifyContent
+  children, align = 'flex-start', padding = '0px', gap = '0px', width = 'fit-content', justifyContent, height
 }) => {
   return (
     <ColumnContainer
@@ -36,7 +37,8 @@ const FlexColumnContainer: React.FC<FlexColumnProps> = ({
       $padding={padding}
       $align={align}
       style={{
-        justifyContent: justifyContent
+        justifyContent: justifyContent,
+        height: height
       }}
     >
       {children}

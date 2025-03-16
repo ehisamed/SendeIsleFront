@@ -16,6 +16,7 @@ interface MUITextFieldProps {
     validation?: any;
     endAdornment?: React.ReactNode;
     helperTextWidth?: string;
+    value?: string
 }
 
 const StyledTextField = styled(MuiTextField)(({ theme }) => ({
@@ -88,7 +89,8 @@ const MUITextField: React.FC<MUITextFieldProps> = ({
     startAdornment,
     validation,
     endAdornment,
-    helperTextWidth
+    helperTextWidth,
+    value,
 }) => {
     return (
         <FlexColumnContainer width='100%'>
@@ -97,6 +99,7 @@ const MUITextField: React.FC<MUITextFieldProps> = ({
                 error={!!error}
                 variant="outlined"
                 fullWidth
+                value={value}
                 placeholder={placeholder}
                 type={type}
                 InputProps={{

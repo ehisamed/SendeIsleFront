@@ -53,7 +53,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
             }}
         >
             {headImg && (
-                <img src={headImg} alt="" style={{ width: '120px', height: 'auto', marginBottom: '25px'}}/>
+                <img src={headImg} alt="" style={{ width: '120px', height: 'auto', marginBottom: '45px'}}/>
             )}
             <FlexRowContainer gap='10px'>
                 {hasBack && backTo && (<LinkButton to={backTo}>{backInner}</LinkButton>)}
